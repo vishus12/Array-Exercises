@@ -8,17 +8,17 @@ const instructors = useInstructors();
 // It should return an array of just the students who are in that cohort
 export const getStudentsInCohort = (cohort) => {
 	let studentsInCohort = students.filter(student => student.cohort === cohort)
-	return studentsInCohort 
+	return studentsInCohort
 }
-    
+
 // Export a function called getFullTimeStudents
 // It should not accept any parameters
 // It should return an array of only the full time students
 export const getFullTimeStudents = () => {
 	return students.filter((student) => student.fullTime);
-	
-  }
-	
+
+}
+
 // Export a function called getStudentsByInstructorId
 // It should accept one integer parameter name `instructorId`
 // It should return an array of students with that instructor
@@ -37,11 +37,29 @@ export const getPolyglotStudents = (languageCount) => {
 // Export a function called getAvailableInstructors
 // It should not accept any parameters
 // It should return an array of instructors that don't have any students
+// asdfasdfadsfa
+
+export const getAvailableInstructors = () => {
+	let studentArray = useStudents().map(item => {
+		return item.instructorId;
+	})
+	return useInstructors().filter(item => {
+		if (studentArray.includes(item.id) === false) {
+			return item 
+
+		}
+	})
+
+}
 
 // Export a function called getStudentsByLanguage
 // It should accept one string parameter named `language`
 // It should return an array of students who know the given language
 // HINT: In addition to the `filter` method, you might also look up the `some` method
+
+export const getStudentsByLanguage = (language) => {
+	return useStudents().filter(item => item.languages.includes(language))
+}
 
 /******** ADVANCED CHALLENGE ********/
 /******** Only do this if all other tests are passing ****/
